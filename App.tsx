@@ -2,19 +2,16 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 
 import { View } from "./src/components/primitives";
-import { Button, Variants } from "./src/components/composites";
+import { Button } from "./src/components/composites";
 import Theme from "./src/theme";
 
 export default function App() {
   return (
     <ThemeProvider theme={Theme}>
-      <View flexGrow={1} justifyContent="center" alignItems="center" p={3}>
+      <View flexGrow={1} bg="white" justifyContent="center" alignItems="center" p={3}>
         <Button mb={3} label="Without Variant" />
-        <Button variant={Variants.positive} mb={3} label="Login" />
-        <Button variant={Variants.caution} mb={3} transaprent label="Caution" />
-        <Button variant={Variants.promote} mb={3} block label="Block" />
-        <Button variant={Variants.critical} mb={3} label="NOOOOO!" />
-        <Button variant={Variants.info} mb={3} outline label="Outline button" />
+        <Button variant="positive" mb={3} label="Login" />
+        <Button variant="promote" mb={3} block label="Login" />
       </View>
     </ThemeProvider>
   );

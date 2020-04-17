@@ -17,8 +17,6 @@ import {
 
 import { Text, TextProps } from "../../primitives";
 
-import { Variants } from "../../../@types/enums";
-
 type RippleProps =
   | BorderProps
   | ColorProps
@@ -39,7 +37,7 @@ type ButtonProps = RippleProps &
     block?: boolean;
     outline?: boolean;
     transaprent?: boolean;
-    variant?: Variants;
+    variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
     labelStyle?: TextStyle;
   };
 
