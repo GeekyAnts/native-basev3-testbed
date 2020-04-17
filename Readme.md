@@ -15,10 +15,14 @@ yarn
 Please make sure that you have Expo installed in your system.
 
 ```bash
-yarn start
+yarn ios
 ```
 
-Then select iOS/android simulator as per your requirement/preference (the terminal will prompt).
+or
+
+```bash
+yarn android
+```
 
 ## Building components
 
@@ -54,3 +58,31 @@ export default function App() {
   );
 }
 ```
+
+## Contributing
+
+Create a branch with the following convention
+
+```
+feat/button
+```
+
+Replace _button_ with the component name.
+
+Make sure the branch is updated with remote master before creating a PR against the `master` branch. Avoid changing the `App.tsx` file in the PR's.
+
+Make sure the commit messages adhere to the following pattern
+
+```bash
+fix(button): fixes button transparency issue
+```
+
+```bash
+feat(button): adds outline prop to button
+```
+
+```bash
+chore(button): removes unused styles and cleans up
+```
+
+Squash your commits into one before merging.
