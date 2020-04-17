@@ -5,10 +5,6 @@ import { View } from "./src/components/primitives";
 import { Button, Variants } from "./src/components/composites";
 import Theme from "./src/theme";
 
-/*
- <Button  label="Login" /> 
-*/
-
 export default function App() {
   return (
     <ThemeProvider theme={Theme}>
