@@ -38,6 +38,7 @@ type ButtonProps = RippleProps &
     label?: string;
     block?: boolean;
     outline?: boolean;
+    transaprent?: boolean;
     variant?: Variants;
     labelStyle?: TextStyle;
   };
@@ -52,32 +53,39 @@ const buttonDefaultprops: RippleProps = {
   py: 4,
 };
 
+const transparentButtonProps: RippleProps = {
+  bg: "transparent",
+  rippleColor: "black",
+};
+
 const textDefaultProps: TextProps = {
   color: "white",
   fontSize: 2,
   fontWeight: 2,
 };
 
-const Button = ({ block, variant, label, labelStyle, outline, ...props }: ButtonProps) => {
+const Button = ({
+  block,
+  variant,
+  transaprent,
+  label,
+  labelStyle,
+  outline,
+  ...props
+}: ButtonProps) => {
   const updatedButtonProps: ButtonProps = {
     ...buttonDefaultprops,
     bg: variant ?? "indigo.6",
     ...(block ? { alignSelf: "stretch" } : {}),
+    ...(transaprent ? transparentButtonProps : {}),
     ...(outline
-      ? /* eslint-disable indent */
-        {
-          bg: "transparent",
-          borderWidth: 1,
-          borderColor: variant ?? "indigo.6",
-          rippleColor: "black",
-        }
+      ? { ...transparentButtonProps, borderWidth: 1, borderColor: variant ?? "indigo.6" }
       : {}),
-    /* eslint-enable indent */
   };
 
   const updatedTextProps: TextProps = {
     ...textDefaultProps,
-    ...(outline ? { color: variant ?? "indigo.6" } : {}),
+    ...(outline || transaprent ? { color: variant ?? "indigo.6" } : {}),
   };
 
   return (

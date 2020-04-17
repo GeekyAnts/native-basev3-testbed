@@ -14,9 +14,10 @@ export default function App() {
     <ThemeProvider theme={Theme}>
       <View flexGrow={1} justifyContent="center" alignItems="center" p={3}>
         <Button mb={3} label="Without Variant" />
-        <Button variant={Variants.critical} mb={3} label="NOOOOO!" />
         <Button variant={Variants.positive} mb={3} label="Login" />
+        <Button variant={Variants.caution} mb={3} transaprent label="Caution" />
         <Button variant={Variants.promote} mb={3} block label="Block" />
+        <Button variant={Variants.critical} mb={3} label="NOOOOO!" />
         <Button variant={Variants.info} mb={3} outline label="Outline button" />
       </View>
     </ThemeProvider>
