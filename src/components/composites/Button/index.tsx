@@ -41,6 +41,9 @@ type ButtonProps = RippleProps &
     labelStyle?: TextStyle;
   };
 
+/*
+| Default button style
+*/
 const buttonDefaultprops: RippleProps = {
   flexDirection: "row",
   justifyContent: "center",
@@ -51,11 +54,17 @@ const buttonDefaultprops: RippleProps = {
   py: 4,
 };
 
+/*
+| Transparent button style
+*/
 const transparentButtonProps: RippleProps = {
   bg: "transparent",
   rippleColor: "black",
 };
 
+/*
+| Default button text style
+*/
 const textDefaultProps: TextProps = {
   color: "white",
   fontSize: 2,
@@ -71,6 +80,9 @@ const Button = ({
   outline,
   ...props
 }: ButtonProps) => {
+  /*
+  | Updated button style based on props
+  */
   const updatedButtonProps: ButtonProps = {
     ...buttonDefaultprops,
     bg: variant ?? "indigo.6",
