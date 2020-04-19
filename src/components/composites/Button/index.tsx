@@ -1,5 +1,5 @@
 import React from "react";
-import { TextStyle, TouchableWithoutFeedbackProps } from "react-native";
+import { StyleSheet, TextStyle, TouchableWithoutFeedbackProps } from "react-native";
 import Ripple from "react-native-material-ripple";
 import styled from "styled-components";
 import {
@@ -15,19 +15,20 @@ import {
   space,
 } from "styled-system";
 
+import { shadows } from "../../../styles";
+
 import { Text, TextProps } from "../../primitives";
 
-type RippleProps =
-  | BorderProps
-  | ColorProps
-  | FlexboxProps
-  | LayoutProps
-  | SpaceProps
-  | {
-      rippleColor?: string;
-      rippleOpacity?: number;
-      rippleDuration?: number;
-    };
+type RippleProps = BorderProps &
+  ColorProps &
+  FlexboxProps &
+  LayoutProps &
+  SpaceProps & {
+    rippleColor?: string;
+    rippleOpacity?: number;
+    rippleDuration?: number;
+    shadow?: number | "none";
+  };
 
 const StyledRipple = styled(Ripple)(color, border, flexbox, layout, space);
 
@@ -45,6 +46,7 @@ type ButtonProps = RippleProps &
 | Default button style
 */
 const buttonDefaultprops: RippleProps = {
+  shadow: 2,
   flexDirection: "row",
   justifyContent: "center",
   alignItems: "center",
@@ -76,10 +78,28 @@ const Button = ({
   variant,
   transaprent,
   label,
+  style,
+  shadow,
   labelStyle,
   outline,
   ...props
 }: ButtonProps) => {
+  let computedStyle = style;
+  /*
+  | If shadow prop exists, apply shadow style otherwise fallback to default shadow
+  */
+  const buttonShadow = shadow ?? buttonDefaultprops.shadow;
+  /*
+  | If shadow="none", don't apply styles
+  */
+  if (buttonShadow !== "none") {
+    computedStyle = StyleSheet.flatten([
+      style,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      shadows[buttonShadow! > shadows.length ? shadows.length : buttonShadow!],
+    ]);
+  }
+
   /*
   | Updated button style based on props
   */
@@ -99,7 +119,7 @@ const Button = ({
   };
 
   return (
-    <StyledRipple {...updatedButtonProps} {...props}>
+    <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
