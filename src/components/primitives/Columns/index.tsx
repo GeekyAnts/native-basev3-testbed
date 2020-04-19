@@ -14,6 +14,8 @@ import {
   space as spacing,
 } from "styled-system";
 
+import { getSpacedChildren } from "../../../utils";
+
 import View from "../View";
 
 export type IColumnsProps = ColorProps | SpaceProps | LayoutProps | FlexboxProps | BorderProps;
@@ -34,24 +36,7 @@ type ColumnsProps = IColumnsProps &
   };
 
 const Columns = ({ space, children, ...props }: ColumnsProps) => {
-  const childrenArray = React.Children.toArray(children);
-  /*
-  | Separate the trailing (not first) children from the children array
-  */
-  const trailingChildren = childrenArray.slice(1);
-  /*
-  | Add the margiin to the children
-  */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const trailingChildrenWithSpacing = trailingChildren.map((child: any) => {
-    return React.cloneElement(child, { ml: space }, null);
-  });
-  /*
-  | New children array with applied margin to trailing children
-  */
-  const computedChildren = [childrenArray[0], trailingChildrenWithSpacing];
-
-  return <StyledColumns {...props}>{computedChildren}</StyledColumns>;
+  return <StyledColumns {...props}>{getSpacedChildren(children, space, "X")}</StyledColumns>;
 };
 
 export default Columns;

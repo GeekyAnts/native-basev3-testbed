@@ -1,17 +1,23 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components/native";
 
-import { View } from "./src/components/primitives";
-import { Button } from "./src/components/composites";
+import { Box, Column, Columns, Stack, View } from "./src/components/primitives";
 import Theme from "./src/theme";
 
 export default function App() {
   return (
     <ThemeProvider theme={Theme}>
-      <View flexGrow={1} bg="white" justifyContent="center" alignItems="center" p={3}>
-        <Button mb={3} label="Without Variant" />
-        <Button variant="positive" mb={3} label="Login" />
-        <Button variant="promote" mb={3} block label="Login" />
+      <View flexGrow={1} justifyContent="center" alignItems="stretch" p={3} bg="gray.2">
+        <Columns space={3} height={100} mb={3}>
+          <Column borderRadius={4} flexGrow={1} bg="green.5" />
+          <Column borderRadius={4} width={1 / 2.5} bg="pink.3" />
+          <Column borderRadius={4} flexGrow={1.5} bg="indigo.8" />
+        </Columns>
+        <Stack space={3}>
+          <Box borderRadius={4} height={70} bg="blue.3" />
+          <Box borderRadius={4} height={70} bg="purple.5" />
+          <Box borderRadius={4} height={70} bg="yellow.4" />
+        </Stack>
       </View>
     </ThemeProvider>
   );
