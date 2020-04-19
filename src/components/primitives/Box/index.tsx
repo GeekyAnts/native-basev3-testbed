@@ -1,3 +1,5 @@
+import React from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import {
   BorderProps,
@@ -12,14 +14,28 @@ import {
   space,
 } from "styled-system";
 
-export type IBoxProps = ColorProps | SpaceProps | LayoutProps | FlexboxProps | BorderProps;
+import { shadows } from "../../../styles";
 
-const Box = styled.View<IBoxProps>`
-  ${color}
-  ${space}
-  ${layout}
-  ${flexbox}
-  ${border}
-`;
+export type IBoxProps = ColorProps &
+  SpaceProps &
+  LayoutProps &
+  FlexboxProps &
+  BorderProps & { shadow?: number; style?: ViewStyle };
+
+const StyledBox = styled(View)<IBoxProps>(color, space, layout, flexbox, border);
+
+const Box = ({ shadow, style, ...props }: IBoxProps) => {
+  let computedStyle: ViewStyle | undefined = style;
+  /*
+  | If shadow prop exists, apply shadow style
+  */
+  if (shadow) {
+    computedStyle = StyleSheet.flatten([
+      style,
+      shadows[shadow > shadows.length ? shadows.length : shadow],
+    ]);
+  }
+  return <StyledBox {...props} style={computedStyle} />;
+};
 
 export default Box;
