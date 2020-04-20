@@ -12,9 +12,17 @@ import {
   space,
 } from "styled-system";
 
-export type IViewProps = ColorProps | SpaceProps | LayoutProps | FlexboxProps | BorderProps;
+import Box, { IBoxProps } from "../Box";
 
-const View = styled.View<IViewProps>`
+export type IViewProps =
+  | ColorProps
+  | SpaceProps
+  | LayoutProps
+  | FlexboxProps
+  | BorderProps
+  | IBoxProps;
+
+const View = styled(Box)<IViewProps>`
   ${color}
   ${space}
   ${layout}

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewProps, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import {
   BorderProps,
@@ -16,11 +16,12 @@ import {
 
 import { shadows } from "../../../styles";
 
-export type IBoxProps = ColorProps &
+export type IBoxProps = ViewProps &
+  ColorProps &
   SpaceProps &
   LayoutProps &
   FlexboxProps &
-  BorderProps & { shadow?: number; style?: ViewStyle };
+  BorderProps & { shadow?: number; style?: ViewStyle; children?: JSX.Element | JSX.Element[] };
 
 const StyledBox = styled(View)<IBoxProps>(color, space, layout, flexbox, border);
 
