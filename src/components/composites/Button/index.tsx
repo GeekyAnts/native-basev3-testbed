@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, TextStyle, TouchableWithoutFeedbackProps } from "react-native";
 import Ripple from "react-native-material-ripple";
 import styled from "styled-components";
+import { MaterialIcons } from "@expo/vector-icons";
 import {
   BorderProps,
   ColorProps,
@@ -19,7 +20,6 @@ import { shadows } from "../../../styles";
 
 import { Text, TextProps } from "../../primitives";
 
-import { MaterialIcons } from "@expo/vector-icons";
 
 type RippleProps = BorderProps &
   ColorProps &
@@ -38,7 +38,6 @@ type IconProps = {
   icon?: {
     name: string;
     position?: "left" | "right";
-    size?: number;
     style?: TextStyle | {};
   };
 }
@@ -133,13 +132,13 @@ const Button = ({
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
       {props.icon && props.icon.position === "left" && (
-        <MaterialIcons name={props.icon.name} style={props.icon.style} size={props.icon.size} />
+        <MaterialIcons name={props.icon.name} style={props.icon.style} />
       )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
       {props.icon && (props.icon.position === "right" || !props.icon.position) && (
-        <MaterialIcons name={props.icon.name} style={props.icon.style} size={props.icon.size} />
+        <MaterialIcons name={props.icon.name} style={props.icon.style} />
       )}
     </StyledRipple>
   );
