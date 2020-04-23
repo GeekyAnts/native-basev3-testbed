@@ -19,6 +19,8 @@ import { shadows } from "../../../styles";
 
 import { Text, TextProps } from "../../primitives";
 
+import { MaterialIcons } from "@expo/vector-icons";
+
 type RippleProps = BorderProps &
   ColorProps &
   FlexboxProps &
@@ -32,8 +34,18 @@ type RippleProps = BorderProps &
 
 const StyledRipple = styled(Ripple)(color, border, flexbox, layout, space);
 
-type ButtonProps = RippleProps &
-  TouchableWithoutFeedbackProps & {
+type IconProps = {
+  icon?: {
+    name: string;
+    position?: "left" | "right";
+    size?: number;
+    style?: TextStyle | {};
+  };
+}
+
+type ButtonProps = IconProps & RippleProps &
+  TouchableWithoutFeedbackProps & 
+  IconProps & {
     label?: string;
     block?: boolean;
     outline?: boolean;
@@ -119,10 +131,16 @@ const Button = ({
   };
 
   return (
-    <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
+    <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>     
+    {props.icon && props.icon.position === "left" && (
+        <MaterialIcons name={props.icon.name} style={props.icon.style} size={props.icon.size} />
+      )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
+      {props.icon && ( props.icon.position === "right" || !props.icon.position ) && (
+        <MaterialIcons name={props.icon.name} style={props.icon.style} size={props.icon.size} />
+      )}
     </StyledRipple>
   );
 };
