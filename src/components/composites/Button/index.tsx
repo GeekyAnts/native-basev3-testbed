@@ -44,15 +44,15 @@ type IconProps = {
 }
 
 type ButtonProps = IconProps & RippleProps &
-  TouchableWithoutFeedbackProps & 
-  IconProps & {
-    label?: string;
-    block?: boolean;
-    outline?: boolean;
-    transaprent?: boolean;
-    variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
-    labelStyle?: TextStyle;
-  };
+  TouchableWithoutFeedbackProps &
+{
+  label?: string;
+  block?: boolean;
+  outline?: boolean;
+  transaprent?: boolean;
+  variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
+  labelStyle?: TextStyle;
+};
 
 /*
 | Default button style
@@ -131,14 +131,14 @@ const Button = ({
   };
 
   return (
-    <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>     
-    {props.icon && props.icon.position === "left" && (
+    <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
+      {props.icon && props.icon.position === "left" && (
         <MaterialIcons name={props.icon.name} style={props.icon.style} size={props.icon.size} />
       )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
-      {props.icon && ( props.icon.position === "right" || !props.icon.position ) && (
+      {props.icon && (props.icon.position === "right" || !props.icon.position) && (
         <MaterialIcons name={props.icon.name} style={props.icon.style} size={props.icon.size} />
       )}
     </StyledRipple>
