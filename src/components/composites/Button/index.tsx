@@ -92,6 +92,7 @@ const Button = ({
   shadow,
   labelStyle,
   outline,
+  icon,
   ...props
 }: ButtonProps) => {
   let computedStyle = style;
@@ -127,8 +128,6 @@ const Button = ({
     ...textDefaultProps,
     ...(outline || transaprent ? { color: variant ?? "indigo.6" } : {}),
   };
-
-  const { icon } = props;
 
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
