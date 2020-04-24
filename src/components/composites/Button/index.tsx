@@ -20,7 +20,6 @@ import { shadows } from "../../../styles";
 
 import { Text, TextProps } from "../../primitives";
 
-
 type RippleProps = BorderProps &
   ColorProps &
   FlexboxProps &
@@ -40,18 +39,18 @@ type IconProps = {
     position?: "left" | "right";
     style?: TextStyle | {};
   };
-}
-
-type ButtonProps = IconProps & RippleProps &
-  TouchableWithoutFeedbackProps &
-{
-  label?: string;
-  block?: boolean;
-  outline?: boolean;
-  transaprent?: boolean;
-  variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
-  labelStyle?: TextStyle;
 };
+
+type ButtonProps = IconProps &
+  RippleProps &
+  TouchableWithoutFeedbackProps & {
+    label?: string;
+    block?: boolean;
+    outline?: boolean;
+    transaprent?: boolean;
+    variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
+    labelStyle?: TextStyle;
+  };
 
 /*
 | Default button style
@@ -129,16 +128,16 @@ const Button = ({
     ...(outline || transaprent ? { color: variant ?? "indigo.6" } : {}),
   };
 
+  const { icon } = props;
+
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
-      {props.icon && props.icon.position === "left" && (
-        <MaterialIcons name={props.icon.name} style={props.icon.style} />
-      )}
+      {icon && icon.position === "left" && <MaterialIcons name={icon.name} style={icon.style} />}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
-      {props.icon && (props.icon.position === "right" || !props.icon.position) && (
-        <MaterialIcons name={props.icon.name} style={props.icon.style} />
+      {icon && (icon.position === "right" || !icon.position) && (
+        <MaterialIcons name={icon.name} style={icon.style} />
       )}
     </StyledRipple>
   );
