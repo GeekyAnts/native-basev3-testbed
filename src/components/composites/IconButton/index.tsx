@@ -20,13 +20,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const IconButton = ({ iconStyle, iconName }: IconButtonProps) => {
+const IconButton = ({ iconStyle, iconName, ...props }: IconButtonProps) => {
   const flattenedIconStyle: TextStyle = StyleSheet.flatten([styles.iconDefaultStyle, iconStyle]);
   return (
     <Button
       {...iconButtonDefaultprops}
       transparent
       icon={{ name: iconName, style: flattenedIconStyle }}
+      {...props}
     />
   );
 };
