@@ -10,6 +10,7 @@
     "format": "prettier --check ./src"
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.6",
     "@types/styled-components": "^5.0.1",
     "expo": "~37.0.3",
     "react": "~16.9.0",

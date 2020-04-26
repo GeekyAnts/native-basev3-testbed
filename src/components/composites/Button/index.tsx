@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, TextStyle, TouchableWithoutFeedbackProps } from "react-native";
 import Ripple from "react-native-material-ripple";
 import styled from "styled-components";
+import { MaterialIcons } from "@expo/vector-icons";
 import {
   BorderProps,
   ColorProps,
@@ -15,9 +16,9 @@ import {
   space,
 } from "styled-system";
 
-import { shadows } from "../../../styles";
-
 import { Text, TextProps } from "../../primitives";
+
+import { shadows } from "../../../styles";
 
 type RippleProps = BorderProps &
   ColorProps &
@@ -32,12 +33,21 @@ type RippleProps = BorderProps &
 
 const StyledRipple = styled(Ripple)(color, border, flexbox, layout, space);
 
-type ButtonProps = RippleProps &
+type IconProps = {
+  icon?: {
+    name: string;
+    position?: "left" | "right";
+    style?: TextStyle | {};
+  };
+};
+
+export type ButtonProps = IconProps &
+  RippleProps &
   TouchableWithoutFeedbackProps & {
     label?: string;
     block?: boolean;
     outline?: boolean;
-    transaprent?: boolean;
+    transparent?: boolean;
     variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
     labelStyle?: TextStyle;
   };
@@ -76,12 +86,13 @@ const textDefaultProps: TextProps = {
 const Button = ({
   block,
   variant,
-  transaprent,
+  transparent,
   label,
   style,
   shadow,
   labelStyle,
   outline,
+  icon,
   ...props
 }: ButtonProps) => {
   let computedStyle = style;
@@ -107,7 +118,7 @@ const Button = ({
     ...buttonDefaultprops,
     bg: variant ?? "indigo.6",
     ...(block ? { alignSelf: "stretch" } : {}),
-    ...(transaprent ? transparentButtonProps : {}),
+    ...(transparent ? transparentButtonProps : {}),
     ...(outline
       ? { ...transparentButtonProps, borderWidth: 1, borderColor: variant ?? "indigo.6" }
       : {}),
@@ -115,14 +126,18 @@ const Button = ({
 
   const updatedTextProps: TextProps = {
     ...textDefaultProps,
-    ...(outline || transaprent ? { color: variant ?? "indigo.6" } : {}),
+    ...(outline || transparent ? { color: variant ?? "indigo.6" } : {}),
   };
 
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
+      {icon && icon.position === "left" && <MaterialIcons name={icon.name} style={icon.style} />}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
+      {icon && (icon.position === "right" || !icon.position) && (
+        <MaterialIcons name={icon.name} style={icon.style} />
+      )}
     </StyledRipple>
   );
 };
