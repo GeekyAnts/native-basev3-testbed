@@ -16,9 +16,9 @@ import {
   space,
 } from "styled-system";
 
-import { shadows } from "../../../styles";
-
 import { Text, TextProps } from "../../primitives";
+
+import { shadows } from "../../../styles";
 
 type RippleProps = BorderProps &
   ColorProps &
@@ -41,13 +41,13 @@ type IconProps = {
   };
 };
 
-type ButtonProps = IconProps &
+export type ButtonProps = IconProps &
   RippleProps &
   TouchableWithoutFeedbackProps & {
     label?: string;
     block?: boolean;
     outline?: boolean;
-    transaprent?: boolean;
+    transparent?: boolean;
     variant?: "critical" | "caution" | "positive" | "neutral" | "info" | "promote";
     labelStyle?: TextStyle;
   };
@@ -86,7 +86,7 @@ const textDefaultProps: TextProps = {
 const Button = ({
   block,
   variant,
-  transaprent,
+  transparent,
   label,
   style,
   shadow,
@@ -118,7 +118,7 @@ const Button = ({
     ...buttonDefaultprops,
     bg: variant ?? "indigo.6",
     ...(block ? { alignSelf: "stretch" } : {}),
-    ...(transaprent ? transparentButtonProps : {}),
+    ...(transparent ? transparentButtonProps : {}),
     ...(outline
       ? { ...transparentButtonProps, borderWidth: 1, borderColor: variant ?? "indigo.6" }
       : {}),
@@ -126,7 +126,7 @@ const Button = ({
 
   const updatedTextProps: TextProps = {
     ...textDefaultProps,
-    ...(outline || transaprent ? { color: variant ?? "indigo.6" } : {}),
+    ...(outline || transparent ? { color: variant ?? "indigo.6" } : {}),
   };
 
   return (
