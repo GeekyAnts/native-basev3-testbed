@@ -29,5 +29,6 @@ module.exports = {
     semi: ["error", "always"],
     "prettier/prettier": "error",
     "react-native/no-inline-styles": "error",
+    "import/order": ["error", { "newlines-between": "always-and-inside-groups" }],
   },
 };
