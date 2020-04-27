@@ -3,5 +3,6 @@ import { Variants } from "../../@types/enums";
 
 import AppBar from "./AppBar";
 import Button from "./Button";
+import IconButton from "./IconButton";
 
-export { AppBar, Button, Variants };
+export { AppBar, Button, IconButton, Variants };
