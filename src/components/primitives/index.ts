@@ -5,5 +5,6 @@ import Columns from "./Columns";
 import Column from "./Column";
 import Stack from "./Stack";
 import Inline from "./Inline";
+import Icon from "./Icon";
 
-export { View, Text, TextProps, Columns, Column, Box, IBoxProps, Stack, Inline };
+export { View, Text, TextProps, Columns, Column, Box, IBoxProps, Stack, Inline, Icon };
