@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, TextStyle, TouchableWithoutFeedbackProps } from "react-native";
 import Ripple from "react-native-material-ripple";
 import styled from "styled-components";
-import { MaterialIcons } from "@expo/vector-icons";
 import {
   BorderProps,
   ColorProps,
@@ -20,6 +19,8 @@ import { Text, TextProps } from "../../primitives";
 
 import { shadows } from "../../../styles";
 
+import Icon, { IconProps } from "../../primitives/Icon";
+
 type RippleProps = BorderProps &
   ColorProps &
   FlexboxProps &
@@ -33,15 +34,13 @@ type RippleProps = BorderProps &
 
 const StyledRipple = styled(Ripple)(color, border, flexbox, layout, space);
 
-type IconProps = {
-  icon?: {
-    name: string;
+type iconProps = {
+  icon?: IconProps & {
     position?: "left" | "right";
-    style?: TextStyle | {};
   };
 };
 
-export type ButtonProps = IconProps &
+export type ButtonProps = iconProps &
   RippleProps &
   TouchableWithoutFeedbackProps & {
     label?: string;
@@ -129,14 +128,27 @@ const Button = ({
     ...(outline || transparent ? { color: variant ?? "indigo.6" } : {}),
   };
 
+  const styles = StyleSheet.create({
+    iconDefaultStyle: {
+      fontSize: 24,
+    },
+  });
+
+  const flattenedIconStyle: TextStyle = StyleSheet.flatten([styles.iconDefaultStyle, icon?.style]);
+
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
-      {icon && icon.position === "left" && <MaterialIcons name={icon.name} style={icon.style} />}
+      {icon && icon.position === "left" && (
+        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} mr={3} />
+      )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
-      {icon && (icon.position === "right" || !icon.position) && (
-        <MaterialIcons name={icon.name} style={icon.style} />
+      {icon && icon.position === "right" && (
+        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} ml={3} />
+      )}
+      {icon && !icon.position && (
+        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} />
       )}
     </StyledRipple>
   );
