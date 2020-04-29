@@ -1,32 +1,29 @@
 import React from "react";
-import { StyleSheet, TextStyle } from "react-native";
+import { TextStyle } from "react-native";
 
 import Button, { ButtonProps } from "../Button";
 
-type IconButtonProps = ButtonProps & {
-  iconName: string;
+import { IconProps } from "../../primitives/Icon";
+
+type iconProps = IconProps & {
   iconStyle?: TextStyle | {};
 };
+
+type IconButtonProps = ButtonProps & iconProps;
 
 const iconButtonDefaultprops: ButtonProps = {
   borderRadius: 40,
   padding: 4,
   overflow: "hidden",
+  rippleColor: "white",
 };
 
-const styles = StyleSheet.create({
-  iconDefaultStyle: {
-    fontSize: 30,
-  },
-});
-
-const IconButton = ({ iconStyle, iconName, ...props }: IconButtonProps) => {
-  const flattenedIconStyle: TextStyle = StyleSheet.flatten([styles.iconDefaultStyle, iconStyle]);
+const IconButton = ({ name, type, iconStyle, ...props }: IconButtonProps) => {
   return (
     <Button
       {...iconButtonDefaultprops}
       transparent
-      icon={{ name: iconName, style: flattenedIconStyle }}
+      icon={{ name, type, style: iconStyle }}
       {...props}
     />
   );
