@@ -43,7 +43,6 @@ export type IconProps = TypographyProps &
 
 const Icon = ({ name, type, style, ...props }: IconProps) => {
   const theme: Theme = useContext(ThemeContext);
-
   const styles = StyleSheet.create({
     iconDefaultStyle: {
       fontSize: 30,

@@ -1,8 +1,8 @@
 import Box, { IBoxProps } from "./Box";
-import Icon, { IconProps } from "./Icon";
 import Text, { TextProps } from "./Text";
 import Input from "./Input";
 import View from "./View";
+import styledIcon, { IconProps } from "./Icon";
 import Columns from "./Columns";
 import Column from "./Column";
 import Stack from "./Stack";
@@ -18,7 +18,7 @@ export {
   IBoxProps,
   Stack,
   Inline,
-  Icon,
+  styledIcon as Icon,
   IconProps,
   Input,
 };

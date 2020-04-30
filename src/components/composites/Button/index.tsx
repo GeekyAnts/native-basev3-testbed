@@ -131,6 +131,7 @@ const Button = ({
   const styles = StyleSheet.create({
     iconDefaultStyle: {
       fontSize: 24,
+      color: theme.colors.white,
     },
   });
 
@@ -139,16 +140,16 @@ const Button = ({
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
       {icon && icon.position === "left" && (
-        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} mr={3} />
+        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} mr={3} />
       )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
       {icon && icon.position === "right" && (
-        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} ml={3} />
+        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} ml={3} />
       )}
       {icon && !icon.position && (
-        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} />
+        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} />
       )}
     </StyledRipple>
   );

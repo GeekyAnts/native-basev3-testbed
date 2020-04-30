@@ -33,7 +33,6 @@ const Input = ({ placeholder, placeholderTextColor, style, ...props }: InputProp
     borderRadius: 4,
     borderWidth: 1,
     borderColor: theme.colors.gray[6],
-    mb: 3,
     fontSize: 16,
   };
 
