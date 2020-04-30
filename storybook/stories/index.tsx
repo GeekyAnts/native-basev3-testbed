@@ -14,7 +14,7 @@ storiesOf("Primitives", module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: GetStory) => (
     <ThemeProvider theme={Theme}>
-      <View flexGrow={1} justifyContent="center" alignItems="stretch" p={3} bg="gray.2">
+      <View flexGrow={1} justifyContent="center" p={3} bg="gray.2">
         {getStory()}
       </View>
     </ThemeProvider>
@@ -76,7 +76,7 @@ storiesOf("Primitives", module)
 storiesOf("Composites", module)
   .addDecorator((getStory: GetStory) => (
     <ThemeProvider theme={Theme}>
-      <View flexGrow={1} justifyContent="center" alignItems="stretch" p={3} bg="gray.2">
+      <View flexGrow={1} justifyContent="center" p={3} bg="gray.2">
         {getStory()}
       </View>
     </ThemeProvider>
