@@ -38,11 +38,11 @@ const Input = ({ placeholder, placeholderTextColor, style, ...props }: InputProp
 
   return (
     <StyledInput
-      {...props}
       placeholder={placeholder}
-      style={style}
       {...inputDefaultProps}
+      style={style}
       placeholderTextColor={placeholderTextColor}
+      {...props}
     />
   );
 };
