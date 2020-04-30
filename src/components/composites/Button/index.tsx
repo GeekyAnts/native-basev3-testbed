@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, TextStyle, TouchableWithoutFeedbackProps } from "react-native";
 import Ripple from "react-native-material-ripple";
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import {
   BorderProps,
   ColorProps,
@@ -15,11 +15,9 @@ import {
   space,
 } from "styled-system";
 
-import { Text, TextProps } from "../../primitives";
-
 import { shadows } from "../../../styles";
 
-import Icon, { IconProps } from "../../primitives/Icon";
+import { Icon, IconProps, Text, TextProps } from "../../primitives";
 
 type RippleProps = BorderProps &
   ColorProps &
@@ -51,37 +49,6 @@ export type ButtonProps = iconProps &
     labelStyle?: TextStyle;
   };
 
-/*
-| Default button style
-*/
-const buttonDefaultprops: RippleProps = {
-  shadow: 2,
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: 4,
-  rippleColor: "white",
-  px: 7,
-  py: 4,
-};
-
-/*
-| Transparent button style
-*/
-const transparentButtonProps: RippleProps = {
-  bg: "transparent",
-  rippleColor: "black",
-};
-
-/*
-| Default button text style
-*/
-const textDefaultProps: TextProps = {
-  color: "white",
-  fontSize: 2,
-  fontWeight: 2,
-};
-
 const Button = ({
   block,
   variant,
@@ -94,6 +61,39 @@ const Button = ({
   icon,
   ...props
 }: ButtonProps) => {
+  const theme: Theme = useContext(ThemeContext);
+
+  /*
+  | Default button style
+  */
+  const buttonDefaultprops: RippleProps = {
+    shadow: 2,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    rippleColor: theme.colors.white,
+    px: 7,
+    py: 4,
+  };
+
+  /*
+  | Transparent button style
+  */
+  const transparentButtonProps: RippleProps = {
+    bg: "transparent",
+    rippleColor: theme.colors.black,
+  };
+
+  /*
+  | Default button text style
+  */
+  const textDefaultProps: TextProps = {
+    color: theme.colors.white,
+    fontSize: 2,
+    fontWeight: 2,
+  };
+
   let computedStyle = style;
   /*
   | If shadow prop exists, apply shadow style otherwise fallback to default shadow

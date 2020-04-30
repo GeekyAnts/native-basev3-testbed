@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, TextStyle } from "react-native";
 import { ColorProps, SpaceProps, TypographyProps, color, space, typography } from "styled-system";
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import {
   AntDesign,
   Entypo,
@@ -41,14 +41,16 @@ export type IconProps = TypographyProps &
     style?: TextStyle | {};
   };
 
-const styles = StyleSheet.create({
-  iconDefaultStyle: {
-    fontSize: 30,
-    color: "black",
-  },
-});
-
 const Icon = ({ name, type, style, ...props }: IconProps) => {
+  const theme: Theme = useContext(ThemeContext);
+
+  const styles = StyleSheet.create({
+    iconDefaultStyle: {
+      fontSize: 30,
+      color: theme.colors.black,
+    },
+  });
+
   const flattenedIconStyle: TextStyle = StyleSheet.flatten([styles.iconDefaultStyle, style]);
   switch (type) {
     case "AntDesign":
