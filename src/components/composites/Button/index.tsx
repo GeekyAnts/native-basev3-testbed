@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, TextStyle, TouchableWithoutFeedbackProps } from "react-native";
 import Ripple from "react-native-material-ripple";
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import {
   BorderProps,
   ColorProps,
@@ -15,11 +15,9 @@ import {
   space,
 } from "styled-system";
 
-import { Text, TextProps } from "../../primitives";
-
 import { shadows } from "../../../styles";
 
-import Icon, { IconProps } from "../../primitives/Icon";
+import { Icon, IconProps, Text, TextProps } from "../../primitives";
 
 type RippleProps = BorderProps &
   ColorProps &
@@ -51,37 +49,6 @@ export type ButtonProps = iconProps &
     labelStyle?: TextStyle;
   };
 
-/*
-| Default button style
-*/
-const buttonDefaultprops: RippleProps = {
-  shadow: 2,
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: 4,
-  rippleColor: "white",
-  px: 7,
-  py: 4,
-};
-
-/*
-| Transparent button style
-*/
-const transparentButtonProps: RippleProps = {
-  bg: "transparent",
-  rippleColor: "black",
-};
-
-/*
-| Default button text style
-*/
-const textDefaultProps: TextProps = {
-  color: "white",
-  fontSize: 2,
-  fontWeight: 2,
-};
-
 const Button = ({
   block,
   variant,
@@ -94,6 +61,39 @@ const Button = ({
   icon,
   ...props
 }: ButtonProps) => {
+  const theme: Theme = useContext(ThemeContext);
+
+  /*
+  | Default button style
+  */
+  const buttonDefaultprops: RippleProps = {
+    shadow: 2,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    rippleColor: theme.colors.white,
+    px: 7,
+    py: 4,
+  };
+
+  /*
+  | Transparent button style
+  */
+  const transparentButtonProps: RippleProps = {
+    bg: "transparent",
+    rippleColor: theme.colors.black,
+  };
+
+  /*
+  | Default button text style
+  */
+  const textDefaultProps: TextProps = {
+    color: theme.colors.white,
+    fontSize: 2,
+    fontWeight: 2,
+  };
+
   let computedStyle = style;
   /*
   | If shadow prop exists, apply shadow style otherwise fallback to default shadow
@@ -131,6 +131,7 @@ const Button = ({
   const styles = StyleSheet.create({
     iconDefaultStyle: {
       fontSize: 24,
+      color: theme.colors.white,
     },
   });
 
@@ -139,16 +140,16 @@ const Button = ({
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
       {icon && icon.position === "left" && (
-        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} mr={3} />
+        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} mr={3} />
       )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
       {icon && icon.position === "right" && (
-        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} ml={3} />
+        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} ml={3} />
       )}
       {icon && !icon.position && (
-        <Icon name={icon.name} style={flattenedIconStyle} color="white" type={icon.type} />
+        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} />
       )}
     </StyledRipple>
   );
