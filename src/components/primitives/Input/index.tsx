@@ -1,16 +1,51 @@
-import React from "react";
-import { TextInput } from "react-native";
-import { TypographyProps } from "styled-system";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import { TextInput, TextProps } from "react-native";
+import {
+  BorderProps,
+  ColorProps,
+  LayoutProps,
+  SpaceProps,
+  TypographyProps,
+  border,
+  color,
+  layout,
+  space,
+  typography,
+} from "styled-system";
+import styled, { ThemeContext } from "styled-components";
 
-type InputProps = TypographyProps;
+type InputProps = TypographyProps &
+  LayoutProps &
+  SpaceProps &
+  BorderProps &
+  ColorProps & {
+    placeholder?: string;
+    placeholderTextColor?: string;
+    style?: TextProps | {};
+  };
 
-const Input = () => {
-  return <TextInput placeholder="Enter" />;
+const StyledInput = styled(TextInput)<InputProps>(typography, space, border, color, layout);
+
+const Input = ({ placeholder, placeholderTextColor, style, ...props }: InputProps) => {
+  const theme: Theme = useContext(ThemeContext);
+  const inputDefaultProps: InputProps = {
+    p: 4,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: theme.colors.gray[6],
+    mb: 3,
+    fontSize: 16,
+  };
+
+  return (
+    <StyledInput
+      {...props}
+      placeholder={placeholder}
+      style={style}
+      {...inputDefaultProps}
+      placeholderTextColor={placeholderTextColor}
+    />
+  );
 };
 
-const styledInput = styled(Input)<InputProps>`
-$(typography)
-`;
-
-export default styledInput;
+export default Input;
