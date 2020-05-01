@@ -102,7 +102,7 @@ const Button = ({
   /*
   | If shadow="none", don't apply styles
   */
-  if (buttonShadow !== "none") {
+  if (buttonShadow !== "none" && !transparent && !outline) {
     computedStyle = StyleSheet.flatten([
       style,
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
