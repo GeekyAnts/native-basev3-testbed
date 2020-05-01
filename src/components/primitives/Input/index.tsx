@@ -1,5 +1,5 @@
-import React from "react";
-import { TextInput, TextProps } from "react-native";
+import React, { forwardRef } from "react";
+import { TextInput, TextInputProps } from "react-native";
 import {
   BorderProps,
   ColorProps,
@@ -14,36 +14,29 @@ import {
 } from "styled-system";
 import styled from "styled-components";
 
-type InputProps = TypographyProps &
+type InputProps = TextInputProps &
+  TypographyProps &
   LayoutProps &
   SpaceProps &
   BorderProps &
-  ColorProps & {
-    placeholder?: string;
-    placeholderTextColor?: string;
-    style?: TextProps | {};
-  };
+  ColorProps;
 
 const StyledInput = styled(TextInput)<InputProps>(typography, space, border, color, layout);
 
-const Input = ({ placeholder, placeholderTextColor, style, ...props }: InputProps) => {
-  const inputDefaultProps: InputProps = {
-    p: 4,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "gray.3",
-    fontSize: 2,
-  };
-
-  return (
-    <StyledInput
-      placeholder={placeholder}
-      placeholderTextColor={placeholderTextColor}
-      {...inputDefaultProps}
-      style={style}
-      {...props}
-    />
-  );
+/* 
+  Default styles for Input
+*/
+const inputDefaultProps: InputProps = {
+  p: 4,
+  borderRadius: 4,
+  borderWidth: 1,
+  borderColor: "gray.4",
+  fontSize: 2,
 };
 
-export default Input;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Input = (props: InputProps, ref: any) => {
+  return <StyledInput ref={ref} {...inputDefaultProps} {...props} />;
+};
+
+export default forwardRef(Input);
