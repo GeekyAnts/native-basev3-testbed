@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { TextStyle } from "react-native";
 import { ThemeContext } from "styled-components";
 
-import { IconProps } from "../../primitives/Icon";
+import { IconProps } from "../../primitives";
 
 import Button, { ButtonProps } from "../Button";
 
@@ -21,6 +21,7 @@ const IconButton = ({ name, type, iconStyle, ...props }: IconButtonProps) => {
     overflow: "hidden",
     rippleColor: theme.colors.white,
   };
+
   return (
     <Button
       {...iconButtonDefaultprops}
