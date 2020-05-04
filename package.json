@@ -7,7 +7,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --ext .tsx --ext .ts src/",
-    "format": "prettier --check ./src"
+    "format": "prettier --check ./src",
+    "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.6",
@@ -24,11 +25,21 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-ondevice-knobs": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react-native": "^5.3.18",
+    "@storybook/react-native-server": "^5.3.18",
+    "@types/node": "^13.13.4",
     "@types/react": "~16.9.23",
     "@types/react-native": "~0.61.17",
     "@types/styled-system": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "babel-loader": "^8.1.0",
     "babel-preset-expo": "~8.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -38,6 +49,8 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.4",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "ts-loader": "^7.0.1",
     "typescript": "~3.8.3"
   },
   "lint-staged": {
