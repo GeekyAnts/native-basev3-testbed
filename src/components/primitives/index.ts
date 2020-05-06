@@ -7,6 +7,7 @@ import Columns from "./Columns";
 import Column from "./Column";
 import Stack from "./Stack";
 import Inline from "./Inline";
+import Image from "./Image";
 
 export {
   View,
@@ -21,4 +22,5 @@ export {
   styledIcon as Icon,
   IconProps,
   Input,
+  Image,
 };
