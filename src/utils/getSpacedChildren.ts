@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 import React from "react";
 
 export default (
   children: JSX.Element[] | JSX.Element,
   space: number | undefined,
   axis: "X" | "Y",
+  reverse: boolean | undefined,
 ) => {
   const childrenArray = React.Children.toArray(children);
   /*
@@ -13,7 +15,16 @@ export default (
   /*
   | Set margin prop based on axis
   */
-  const marginProp: object = { ...(axis === "X" ? { ml: space } : { mt: space }) };
+  const marginProp: object = {
+    // eslint-disable-next-line no-nested-ternary
+    ...(axis === "X"
+      ? reverse
+        ? { mr: space }
+        : { ml: space }
+      : reverse
+      ? { mb: space }
+      : { mt: space }),
+  };
 
   /*
   | Add the margiin to the children
