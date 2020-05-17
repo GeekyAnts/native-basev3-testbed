@@ -4,8 +4,18 @@ import { ThemeProvider } from "styled-components/native";
 import { storiesOf } from "@storybook/react-native";
 import { boolean, color, number, select, text, withKnobs } from "@storybook/addon-knobs";
 
-import { Box, Column, Columns, Icon, Stack, Text, View } from "../../src/components/primitives";
-import { AppBar, Button, IconButton } from "../../src/components/composites";
+import {
+  AppBar,
+  Box,
+  Button,
+  Column,
+  Columns,
+  Icon,
+  IconButton,
+  Stack,
+  Text,
+  View,
+} from "../../src";
 import Theme from "../../src/theme";
 
 type GetStory = () => JSX.Element | JSX.Element[];
