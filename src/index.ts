@@ -1,3 +1,5 @@
+import ThemeProvider from "./components/themeprovider";
+
 export { AppBar, Button, IconButton, Variants } from "./components/composites";
 export {
   View,
@@ -14,3 +16,4 @@ export {
   Input,
   Image,
 } from "./components/primitives";
+export { ThemeProvider };
