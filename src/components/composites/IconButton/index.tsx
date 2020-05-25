@@ -12,7 +12,7 @@ type iconProps = IconProps & {
 
 type IconButtonProps = ButtonProps & iconProps;
 
-const IconButton = ({ name, type, iconStyle, ...props }: IconButtonProps) => {
+const IconButton = ({ iconName, iconType, iconStyle, ...props }: IconButtonProps) => {
   const theme: Theme = useContext(ThemeContext);
 
   const iconButtonDefaultprops: ButtonProps = {
@@ -25,7 +25,7 @@ const IconButton = ({ name, type, iconStyle, ...props }: IconButtonProps) => {
     <Button
       {...iconButtonDefaultprops}
       transparent
-      icon={{ name, type, style: iconStyle }}
+      icon={{ iconName, iconType, style: iconStyle }}
       {...props}
     />
   );

@@ -140,16 +140,16 @@ const Button = ({
   return (
     <StyledRipple {...updatedButtonProps} {...props} style={computedStyle}>
       {icon && icon.position === "left" && (
-        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} mr={3} />
+        <Icon iconName={icon.iconName} style={flattenedIconStyle} iconType={icon.iconType} mr={3} />
       )}
       <Text {...updatedTextProps} style={labelStyle}>
         {label}
       </Text>
       {icon && icon.position === "right" && (
-        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} ml={3} />
+        <Icon iconName={icon.iconName} style={flattenedIconStyle} iconType={icon.iconType} ml={3} />
       )}
       {icon && !icon.position && (
-        <Icon name={icon.name} style={flattenedIconStyle} type={icon.type} />
+        <Icon iconName={icon.iconName} style={flattenedIconStyle} iconType={icon.iconType} />
       )}
     </StyledRipple>
   );

@@ -36,12 +36,12 @@ export type IconType =
 export type IconProps = TypographyProps &
   ColorProps &
   SpaceProps & {
-    name: string;
-    type?: IconType;
+    iconName: string;
+    iconType?: IconType;
     style?: TextStyle | {};
   };
 
-const Icon = ({ name, type, style, ...props }: IconProps) => {
+const Icon = ({ iconName, iconType, style, ...props }: IconProps) => {
   const theme: Theme = useContext(ThemeContext);
   const styles = StyleSheet.create({
     iconDefaultStyle: {
@@ -51,36 +51,82 @@ const Icon = ({ name, type, style, ...props }: IconProps) => {
   });
 
   const flattenedIconStyle: TextStyle = StyleSheet.flatten([styles.iconDefaultStyle, style]);
-  switch (type) {
+  let CustomIconType;
+  switch (iconType) {
     case "AntDesign":
-      return <AntDesign name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = AntDesign;
+      break;
     case "Entypo":
-      return <Entypo name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Entypo;
+      break;
     case "EvilIcons":
-      return <EvilIcons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = EvilIcons;
+      break;
     case "Feather":
-      return <Feather name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Feather;
+      break;
     case "FontAwesome":
-      return <FontAwesome name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = FontAwesome;
+      break;
     case "FontAwesome5":
-      return <FontAwesome5 name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = FontAwesome5;
+      break;
     case "Foundation":
-      return <Foundation name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Foundation;
+      break;
     case "Ionicons":
-      return <Ionicons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Ionicons;
+      break;
     case "MaterialCommunityIcons":
-      return <MaterialCommunityIcons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = MaterialCommunityIcons;
+      break;
     case "MaterialIcons":
-      return <MaterialIcons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = MaterialIcons;
+      break;
     case "Octicons":
-      return <Octicons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Octicons;
+      break;
     case "SimpleLineIcons":
-      return <SimpleLineIcons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = SimpleLineIcons;
+      break;
     case "Zocial":
-      return <Zocial name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Zocial;
+      break;
     default:
-      return <MaterialIcons name={name} style={flattenedIconStyle} {...props} />;
+      CustomIconType = Ionicons;
+      break;
   }
+  return <CustomIconType name={iconName} style={flattenedIconStyle} {...props} />;
+  // switch (iconType) {
+  //   case "AntDesign":
+  //     return <AntDesign name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "Entypo":
+  //     return <Entypo name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "EvilIcons":
+  //     return <EvilIcons name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "Feather":
+  //     return <Feather name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "FontAwesome":
+  //     return <FontAwesome name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "FontAwesome5":
+  //     return <FontAwesome5 name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "Foundation":
+  //     return <Foundation name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "Ionicons":
+  //     return <Ionicons name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "MaterialCommunityIcons":
+  //     return <MaterialCommunityIcons name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "MaterialIcons":
+  //     return <MaterialIcons name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "Octicons":
+  //     return <Octicons name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "SimpleLineIcons":
+  //     return <SimpleLineIcons name={iconName} style={flattenedIconStyle} {...props} />;
+  //   case "Zocial":
+  //     return <Zocial name={iconName} style={flattenedIconStyle} {...props} />;
+  //   default:
+  //     return <MaterialIcons name={iconName} style={flattenedIconStyle} {...props} />;
+  // }
 };
 
 const styledIcon = styled(Icon)<IconProps>`
